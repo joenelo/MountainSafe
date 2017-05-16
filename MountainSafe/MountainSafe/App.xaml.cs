@@ -27,14 +27,22 @@ namespace MountainSafe
         static void Main()
         {
             //Start program
+            // API key
             string wunderground_key = "7934ba729ae82e01";
-            string latlong = "49.78999684,-125.82833002";
 
-            parse("http://api.wunderground.com/api/" + wunderground_key + "/conditions/q/VA/Springfield.xml");
-            parse("http://api.wunderground.com/api/" + wunderground_key + "/geolookup/conditions/q/"+latlong+".xml");
-            parse("http://api.wunderground.com/api/" + wunderground_key + "/conditions/q/CA/Oceanside.xml");
-            parse("http://api.wunderground.com/api/" + wunderground_key + "/conditions/q/CA/Mission_Beach.xml");
-            parse("http://api.wunderground.com/api/" + wunderground_key + "/conditions/q/VA/Lorton.xml");
+            // create strings to pass into the GeoLookUp API call
+            string elkhorn = "49.78999684,-125.82833002";
+           // string arrowsmith = "49.22361,-124.59444";
+           // string colonelFoster = "49.74972,-125.86750";
+           // string victoriaPeak = "50.05472,-126.10083";
+           // string triplePeak = "49.15750,-125.30222";
+            
+
+            parse("http://api.wunderground.com/api/" + wunderground_key + "/geolookup/conditions/q/"+elkhorn+".xml");
+            //parse("http://api.wunderground.com/api/" + wunderground_key + "/geolookup/conditions/q/"+arrowsmith+".xml");
+            //parse("http://api.wunderground.com/api/" + wunderground_key + "/geolookup/conditions/q/"+colonelFoster+".xml");
+            //parse("http://api.wunderground.com/api/" + wunderground_key + "/geolookup/conditions/q/"+victoriaPeak+".xml");
+            //parse("http://api.wunderground.com/api/" + wunderground_key + "/geolookup/conditions/q/"+triplePeak+".xml");
 
         }
 
@@ -53,6 +61,8 @@ namespace MountainSafe
             string visibility_km = "";
             string latitude = "";
             string longitude = "";
+
+            
 
             var cli = new WebClient();
             string weather = cli.DownloadString(input_xml);
@@ -120,6 +130,7 @@ namespace MountainSafe
                                 reader.Read();
                                 longitude = reader.Value;
                             }
+                            
 
                             break;
                     }
@@ -137,6 +148,39 @@ namespace MountainSafe
             System.Diagnostics.Debug.WriteLine("Dewpoint:          " + dewpoint_string);
             System.Diagnostics.Debug.WriteLine("Visibility (km):   " + visibility_km);
             System.Diagnostics.Debug.WriteLine("Location:          " + longitude + ", " + latitude);
+        }
+
+        // Start RSS Read from Avalanche Data
+            private string ParseRssFile()
+        {
+            XmlDocument rssXmlDoc = new XmlDocument();
+
+            // Load the RSS file from the RSS URL
+            rssXmlDoc.Load("http://www.islandavalanchebulletin.com/");
+
+            // Parse the Items in the RSS file
+            XmlNodeList rssNodes = rssXmlDoc.SelectNodes("rss/channel/item");
+
+            StringBuilder rssContent = new StringBuilder();
+
+            // Iterate through the items in the RSS file
+            foreach (XmlNode rssNode in rssNodes)
+            {
+                XmlNode rssSubNode = rssNode.SelectSingleNode("title");
+                string title = rssSubNode != null ? rssSubNode.InnerText : "";
+
+                rssSubNode = rssNode.SelectSingleNode("link");
+                string link = rssSubNode != null ? rssSubNode.InnerText : "";
+
+                rssSubNode = rssNode.SelectSingleNode("description");
+                string description = rssSubNode != null ? rssSubNode.InnerText : "";
+
+                rssContent.Append("<a href='" + link + "'>" + title + "</a><br>" + description);
+            }
+
+            // Return the string that contain the RSS items
+            return rssContent.ToString();
+
         }
 
         protected override void OnStart ()
