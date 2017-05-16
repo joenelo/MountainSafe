@@ -28,9 +28,10 @@ namespace MountainSafe
         {
             //Start program
             string wunderground_key = "7934ba729ae82e01";
+            string latlong = "49.78999684,-125.82833002";
 
             parse("http://api.wunderground.com/api/" + wunderground_key + "/conditions/q/VA/Springfield.xml");
-            parse("http://api.wunderground.com/api/" + wunderground_key + "/conditions/q/NY/New_York.xml");
+            parse("http://api.wunderground.com/api/" + wunderground_key + "/geolookup/conditions/q/"+latlong+".xml");
             parse("http://api.wunderground.com/api/" + wunderground_key + "/conditions/q/CA/Oceanside.xml");
             parse("http://api.wunderground.com/api/" + wunderground_key + "/conditions/q/CA/Mission_Beach.xml");
             parse("http://api.wunderground.com/api/" + wunderground_key + "/conditions/q/VA/Lorton.xml");
