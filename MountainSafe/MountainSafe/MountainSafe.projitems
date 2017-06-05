@@ -9,21 +9,11 @@
     <Import_RootNamespace>MountainSafe</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
+    <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AvalancheRSS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConditionsPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)coordinates.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ForecastPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MainPage.cs" />
   </ItemGroup>
 </Project>
