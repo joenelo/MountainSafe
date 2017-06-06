@@ -16,15 +16,15 @@ using Android.Content.PM;
 
 namespace MountainSafe.Droid
 {
-    [Activity(Label = "Mountain Safe", Icon = "@drawable/mountainSafeLogo", Theme = "@style/MainTheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class SplashActivity : AppCompatActivity
+    [Activity(Label = "Mountain Safe", Icon = "@drawable/Disclaimer", Theme = "@style/MainTheme.Disclaimer", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    public class Disclaimer : AppCompatActivity
     {
-        static readonly string TAG = "X:" + typeof(SplashActivity).Name;
+        static readonly string TAG = "X:" + typeof(Disclaimer).Name;
 
         public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
         {
             base.OnCreate(savedInstanceState, persistentState);
-            Log.Debug(TAG, "SplashActivity.OnCreate");
+            Log.Debug(TAG, "Disclaimer.OnCreate");
         }
 
         // Launches the startup task
@@ -40,8 +40,8 @@ namespace MountainSafe.Droid
         {
             Log.Debug(TAG, "Performing some startup work that takes a bit of time.");
             await Task.Delay(3000); // Simulate a bit of startup work.
-            Log.Debug(TAG, "Startup work is finished - starting disclaimer.");
-            StartActivity(new Intent(Application.Context, typeof(Disclaimer)));
+            Log.Debug(TAG, "Startup work is finished - starting Disclaimer.");
+            StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
     }
 }

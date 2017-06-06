@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MountainSafe.iOS", "Mountai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MountainSafe.UWP", "MountainSafe\MountainSafe.UWP\MountainSafe.UWP.csproj", "{2EC6258E-C0F2-4D1E-B9B4-911DC90534C1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4E9CDC77-1C2F-40B7-B101-21B5F92E60A0}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		MountainSafe\MountainSafe\MountainSafe.projitems*{12ec4270-85ac-43c1-8045-dbb4f2b10c3d}*SharedItemsImports = 4
